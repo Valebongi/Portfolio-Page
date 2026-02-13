@@ -24,10 +24,10 @@ const Navbar = () => {
       className={`navbar navbar-expand-lg fixed-top ${scrolled ? 'navbar-scrolled' : 'navbar-transparent'}`}
       style={{
         transition: 'all 300ms ease-in-out',
-        backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.98)' : 'transparent',
+        backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.98)' : 'rgba(0, 0, 0, 0.9)',
         boxShadow: scrolled ? '0 2px 12px rgba(0, 0, 0, 0.08)' : 'none',
-        backdropFilter: scrolled ? 'blur(10px)' : 'none',
-        zIndex: 'var(--z-navbar)'
+        backdropFilter: scrolled ? 'blur(10px)' : 'blur(10px)',
+        zIndex: 1050
       }}
     >
       <div className="container">

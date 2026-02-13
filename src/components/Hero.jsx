@@ -4,10 +4,11 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="d-flex align-items-center"
+      className="d-flex align-items-center hero-section"
       style={{
         minHeight: '100vh',
         paddingTop: '80px',
+        paddingBottom: '60px',
         background: 'linear-gradient(135deg, #000000 0%, #1A1A1A 100%)',
         position: 'relative',
         overflow: 'hidden'
@@ -91,7 +92,7 @@ const Hero = () => {
               Building games that respect your time and intelligence.
             </p>
 
-            <div className="d-flex gap-3 flex-wrap">
+            <div className="d-flex gap-3 flex-wrap mb-5">
               <button
                 className="btn-primary-custom"
                 onClick={() => document.getElementById('games').scrollIntoView({ behavior: 'smooth' })}
@@ -233,6 +234,39 @@ const Hero = () => {
         @keyframes rotate-reverse {
           from { transform: translate(-50%, -50%) rotate(360deg); }
           to { transform: translate(-50%, -50%) rotate(0deg); }
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+          .hero-section {
+            padding-top: 100px !important;
+            padding-bottom: 80px !important;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+          }
+
+          .hero-section .d-flex.gap-3 {
+            gap: 1rem !important;
+            margin-top: 2rem !important;
+            justify-content: center;
+          }
+
+          .hero-section h1 {
+            font-size: 2rem !important;
+            margin-bottom: 1.5rem !important;
+          }
+
+          .hero-section .lead {
+            font-size: 1rem !important;
+            margin-bottom: 1.5rem !important;
+          }
+
+          .btn-primary-custom,
+          .btn-secondary-custom {
+            width: 100%;
+            padding: 0.75rem 1.5rem !important;
+            font-size: 0.9rem !important;
+          }
         }
       `}</style>
     </section>
