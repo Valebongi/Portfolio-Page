@@ -44,32 +44,34 @@ const GameCard = ({ game }) => {
           </div>
         </div>
 
-        {/* Screenshot Preview */}
+        {/* Live iframe Preview — scaled to fit 16:9 container */}
         <div
           style={{
             position: 'relative',
+            width: '100%',
             paddingTop: '56.25%',
-            backgroundColor: 'var(--color-soft-gray)',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            backgroundColor: '#f5f5f5'
           }}
         >
-          <img
-            src={game.thumbnail}
-            alt={`Preview of ${game.title}`}
+          <iframe
+            src={game.link}
+            title={`Preview of ${game.title}`}
             loading="lazy"
             style={{
               position: 'absolute',
               top: 0,
               left: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'top',
-              transition: 'transform var(--transition-medium)'
+              width: '250%',
+              height: '250%',
+              transform: 'scale(0.4)',
+              transformOrigin: 'top left',
+              border: 'none',
+              pointerEvents: 'none'
             }}
-            onMouseEnter={(e) => e.target.style.transform = 'scale(1.03)'}
-            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
           />
+          {/* Invisible overlay so card hover works, not iframe */}
+          <div style={{ position: 'absolute', inset: 0, zIndex: 1 }} />
 
           <div
             className="accent-bar"
@@ -82,7 +84,8 @@ const GameCard = ({ game }) => {
               backgroundColor: 'var(--color-accent)',
               transform: 'scaleX(0)',
               transformOrigin: 'left',
-              transition: 'transform var(--transition-fast)'
+              transition: 'transform var(--transition-fast)',
+              zIndex: 2
             }}
           />
         </div>
