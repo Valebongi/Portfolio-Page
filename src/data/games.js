@@ -1,30 +1,21 @@
 const gamesData = [
   {
     id: 1,
-    title: "Cosmic Explorer",
-    description: "A minimalist space exploration game about discovery and wonder. Navigate procedural galaxies and uncover hidden stories.",
-    thumbnail: "https://placehold.co/1200x675/1A1A1A/E10600?text=Cosmic+Explorer&font=inter",
-    platforms: ["Web", "Windows"],
-    link: "#",
-    ctaText: "Play Now"
+    title: "Digitalaxios",
+    description: "Digital agency platform offering marketing and technology solutions to help businesses grow and establish a strong online presence.",
+    thumbnail: "https://image.thum.io/get/width/1200/crop/675/https://digitalaxios.com",
+    platforms: ["Web", "Agency"],
+    link: "https://digitalaxios.com",
+    ctaText: "Visit Site"
   },
   {
     id: 2,
-    title: "Mind Maze",
-    description: "Puzzle your way through increasingly complex challenges that test logic and spatial reasoning in surprising ways.",
-    thumbnail: "https://placehold.co/1200x675/F5F5F5/000000?text=Mind+Maze&font=inter",
-    platforms: ["Web", "Mobile"],
-    link: "#",
-    ctaText: "Try It"
-  },
-  {
-    id: 3,
-    title: "Echoes of Yesterday",
-    description: "A narrative-driven experience exploring memory, loss, and connection through interactive storytelling.",
-    thumbnail: "https://placehold.co/1200x675/E10600/FFFFFF?text=Echoes+of+Yesterday&font=inter",
-    platforms: ["Windows", "Mac"],
-    link: "#",
-    ctaText: "Download"
+    title: "RankAgile",
+    description: "Agile SEO and digital marketing platform designed to help businesses improve their search rankings and online visibility efficiently.",
+    thumbnail: "https://image.thum.io/get/width/1200/crop/675/https://rankagile.com",
+    platforms: ["Web", "SaaS"],
+    link: "https://rankagile.com",
+    ctaText: "Visit Site"
   }
 ];
 

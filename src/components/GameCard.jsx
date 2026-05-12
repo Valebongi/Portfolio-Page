@@ -1,6 +1,6 @@
 const GameCard = ({ game }) => {
   return (
-    <div className="col-lg-4 col-md-6 mb-4">
+    <div className="col-lg-6 col-md-12 mb-4">
       <div
         className="card h-100 hover-lift"
         style={{
@@ -11,18 +11,51 @@ const GameCard = ({ game }) => {
           transition: 'all var(--transition-fast)'
         }}
       >
-        {/* Game Thumbnail */}
+        {/* Browser Mockup Chrome */}
+        <div
+          style={{
+            backgroundColor: '#1e1e1e',
+            padding: '10px 14px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            flexShrink: 0
+          }}
+        >
+          <div style={{ width: 11, height: 11, borderRadius: '50%', backgroundColor: '#ff5f57', flexShrink: 0 }} />
+          <div style={{ width: 11, height: 11, borderRadius: '50%', backgroundColor: '#febc2e', flexShrink: 0 }} />
+          <div style={{ width: 11, height: 11, borderRadius: '50%', backgroundColor: '#28c840', flexShrink: 0 }} />
+          <div
+            style={{
+              flex: 1,
+              backgroundColor: '#2d2d2d',
+              borderRadius: 4,
+              padding: '4px 10px',
+              marginLeft: 8,
+              fontSize: '0.72rem',
+              color: '#999',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              fontFamily: 'monospace'
+            }}
+          >
+            {game.link.replace('https://', '')}
+          </div>
+        </div>
+
+        {/* Screenshot Preview */}
         <div
           style={{
             position: 'relative',
-            paddingTop: '56.25%', // 16:9 aspect ratio
+            paddingTop: '56.25%',
             backgroundColor: 'var(--color-soft-gray)',
             overflow: 'hidden'
           }}
         >
           <img
             src={game.thumbnail}
-            alt={game.title}
+            alt={`Preview of ${game.title}`}
             loading="lazy"
             style={{
               position: 'absolute',
@@ -31,13 +64,13 @@ const GameCard = ({ game }) => {
               width: '100%',
               height: '100%',
               objectFit: 'cover',
+              objectPosition: 'top',
               transition: 'transform var(--transition-medium)'
             }}
-            onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+            onMouseEnter={(e) => e.target.style.transform = 'scale(1.03)'}
             onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
           />
 
-          {/* Accent Border on Hover */}
           <div
             className="accent-bar"
             style={{
@@ -55,14 +88,13 @@ const GameCard = ({ game }) => {
         </div>
 
         {/* Card Body */}
-        <div className="card-body d-flex flex-column">
+        <div className="card-body d-flex flex-column p-4">
           <h3 className="card-title h5 fw-bold mb-2">{game.title}</h3>
 
           <p className="card-text text-muted flex-grow-1" style={{ fontSize: '0.95rem' }}>
             {game.description}
           </p>
 
-          {/* Platform Tags */}
           {game.platforms && (
             <div className="mb-3">
               {game.platforms.map((platform, index) => (
@@ -83,7 +115,6 @@ const GameCard = ({ game }) => {
             </div>
           )}
 
-          {/* CTA Button */}
           <a
             href={game.link}
             target="_blank"
@@ -91,7 +122,7 @@ const GameCard = ({ game }) => {
             className="btn-primary-custom text-center text-decoration-none"
             style={{ display: 'block' }}
           >
-            {game.ctaText || 'Play Now'}
+            {game.ctaText || 'Visit Site'}
           </a>
         </div>
       </div>

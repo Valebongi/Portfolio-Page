@@ -4,16 +4,16 @@ import gamesData from '../data/games';
 const GamesSection = () => {
   return (
     <section
-      id="games"
+      id="projects"
       className="section-padding"
       style={{ backgroundColor: 'var(--color-bg)' }}
     >
       <div className="container">
         {/* Section Header */}
         <div className="text-center mb-5 fade-in-up">
-          <h2 className="display-5 fw-bold mb-3">Featured Games</h2>
+          <h2 className="display-5 fw-bold mb-3">Featured Projects</h2>
           <p className="lead text-muted max-width-content">
-            Explore interactive experiences designed with passion and precision.
+            Web products and platforms built with attention to quality and user experience.
           </p>
           <div
             style={{
@@ -38,7 +38,7 @@ const GamesSection = () => {
         {/* Empty State */}
         {gamesData.length === 0 && (
           <div className="text-center py-5">
-            <p className="text-muted">No games available at the moment. Check back soon!</p>
+            <p className="text-muted">No projects available at the moment. Check back soon!</p>
           </div>
         )}
       </div>

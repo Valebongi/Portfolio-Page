@@ -84,20 +84,20 @@ const Hero = () => {
             <h1 className="display-3 fw-bold mb-4" style={{ color: '#FFFFFF' }}>
               Valentino Bongiorno
               <br />
-              <span style={{ color: 'var(--color-accent)' }}>Game Developer</span>
+              <span style={{ color: 'var(--color-accent)' }}>Software Engineer</span>
             </h1>
 
             <p className="lead mb-4" style={{ fontSize: '1.25rem', lineHeight: 1.75, maxWidth: '500px', color: '#CCCCCC' }}>
-              Crafting immersive experiences that blend storytelling, mechanics, and art.
-              Building games that respect your time and intelligence.
+              Building web products and digital experiences that are fast, clean, and built to last.
+              From concept to deployment, focused on quality and impact.
             </p>
 
             <div className="d-flex gap-3 flex-wrap mb-5">
               <button
                 className="btn-primary-custom"
-                onClick={() => document.getElementById('games').scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
               >
-                View Games
+                View Projects
               </button>
 
               <button

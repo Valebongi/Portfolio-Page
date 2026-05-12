@@ -61,10 +61,10 @@ const Navbar = () => {
             <li className="nav-item">
               <a
                 className="nav-link"
-                onClick={() => scrollToSection('games')}
+                onClick={() => scrollToSection('projects')}
                 style={{ cursor: 'pointer', fontWeight: 500 }}
               >
-                Games
+                Projects
               </a>
             </li>
             <li className="nav-item">

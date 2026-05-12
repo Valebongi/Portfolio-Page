@@ -1,31 +1,33 @@
-const ContactSection = () => {
-  const contactLinks = [
-    {
-      name: 'Email',
-      icon: '✉️',
-      url: 'mailto:valenbongiorno11@gmail.com',
-      display: 'valenbongiorno11@gmail.com'
-    },
-    {
-      name: 'LinkedIn',
-      icon: '💼',
-      url: 'https://www.linkedin.com/in/valentino-bongiorno-121b00202/',
-      display: 'linkedin.com/in/valentino-bongiorno'
-    },
-    {
-      name: 'WhatsApp',
-      icon: '💬',
-      url: 'https://wa.me/5493516720095',
-      display: '+54 9 351 672-0095'
-    },
-    {
-      name: 'GitHub',
-      icon: '💻',
-      url: 'https://github.com/ValentinoBongiorno',
-      display: 'github.com/ValentinoBongiorno'
-    }
-  ];
+import { FaEnvelope, FaLinkedin, FaWhatsapp, FaGithub } from 'react-icons/fa';
 
+const contactLinks = [
+  {
+    name: 'Email',
+    Icon: FaEnvelope,
+    url: 'mailto:valenbongiorno11@gmail.com',
+    display: 'valenbongiorno11@gmail.com'
+  },
+  {
+    name: 'LinkedIn',
+    Icon: FaLinkedin,
+    url: 'https://www.linkedin.com/in/valentino-bongiorno-121b00202/',
+    display: 'linkedin.com/in/valentino-bongiorno'
+  },
+  {
+    name: 'WhatsApp',
+    Icon: FaWhatsapp,
+    url: 'https://wa.me/5493516720095',
+    display: '+54 9 351 672-0095'
+  },
+  {
+    name: 'GitHub',
+    Icon: FaGithub,
+    url: 'https://github.com/ValentinoBongiorno',
+    display: 'github.com/ValentinoBongiorno'
+  }
+];
+
+const ContactSection = () => {
   return (
     <section
       id="contact"
@@ -34,7 +36,6 @@ const ContactSection = () => {
     >
       <div className="container">
         <div className="max-width-content mx-auto text-center fade-in-up">
-          {/* Section Header */}
           <h2 className="display-5 fw-bold mb-3">Get In Touch</h2>
           <p className="lead text-muted mb-4">
             Have a question, feedback, or just want to say hi? I'd love to hear from you.
@@ -48,7 +49,6 @@ const ContactSection = () => {
             }}
           />
 
-          {/* Contact Links */}
           <div className="row g-4">
             {contactLinks.map((link, index) => (
               <div
@@ -78,8 +78,8 @@ const ContactSection = () => {
                       e.currentTarget.style.backgroundColor = 'var(--color-soft-gray)';
                     }}
                   >
-                    <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>
-                      {link.icon}
+                    <div style={{ marginBottom: '0.75rem', color: 'var(--color-accent)' }}>
+                      <link.Icon size={32} />
                     </div>
                     <h3 className="h6 fw-bold mb-2">{link.name}</h3>
                     <p className="text-muted small mb-0">{link.display}</p>
@@ -89,7 +89,6 @@ const ContactSection = () => {
             ))}
           </div>
 
-          {/* Alternative: Simple Text Links */}
           <div className="mt-5 pt-4" style={{ borderTop: '1px solid var(--color-medium-gray)' }}>
             <p className="text-muted mb-3">Or connect directly:</p>
             <div className="d-flex justify-content-center gap-4 flex-wrap">

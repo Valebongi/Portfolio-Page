@@ -21,20 +21,20 @@ const AboutSection = () => {
           {/* Content */}
           <div style={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
             <p className="mb-4">
-              I'm an indie game developer focused on creating meaningful interactive experiences.
-              My work blends thoughtful design, clean code, and player-first principles.
+              I'm a software engineer focused on building web products that are fast, scalable, and user-friendly.
+              My work blends clean architecture, modern tooling, and a strong focus on real-world outcomes.
             </p>
 
             <p className="mb-4">
-              Every project starts with a simple question: <em>"What's the experience I want to create?"</em>
-              From there, I build mechanics, narratives, and systems that serve that vision—nothing more, nothing less.
+              Every project starts with a simple question: <em>"What problem does this actually solve?"</em>
+              From there, I build systems and interfaces that serve that goal—nothing more, nothing less.
             </p>
 
             <h3 className="h5 fw-bold mt-5 mb-3">Philosophy</h3>
             <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
               <li className="mb-2">
                 <span style={{ color: 'var(--color-accent)', fontWeight: 'bold' }}>✓</span>
-                {' '}Respect the player's time and intelligence
+                {' '}Solve real problems, not hypothetical ones
               </li>
               <li className="mb-2">
                 <span style={{ color: 'var(--color-accent)', fontWeight: 'bold' }}>✓</span>
@@ -42,7 +42,7 @@ const AboutSection = () => {
               </li>
               <li className="mb-2">
                 <span style={{ color: 'var(--color-accent)', fontWeight: 'bold' }}>✓</span>
-                {' '}Build experiences that feel honest
+                {' '}Write code that's easy to read and maintain
               </li>
               <li className="mb-2">
                 <span style={{ color: 'var(--color-accent)', fontWeight: 'bold' }}>✓</span>
@@ -52,7 +52,7 @@ const AboutSection = () => {
 
             <h3 className="h5 fw-bold mt-5 mb-3">Tools & Technologies</h3>
             <div className="d-flex flex-wrap gap-2">
-              {['Unity', 'React', 'C#', 'JavaScript', 'Blender', 'Git'].map((tool) => (
+              {['React', 'JavaScript', 'TypeScript', 'Node.js', 'HTML/CSS', 'Git'].map((tool) => (
                 <span
                   key={tool}
                   className="badge"
