@@ -32,7 +32,8 @@ const Navbar = () => {
     >
       <div className="container">
         <a className="navbar-brand fw-bold" href="#" style={{ fontSize: '1.5rem' }}>
-          <span style={{ color: 'var(--color-accent)' }}>Valentino</span> Bongiorno
+          <span style={{ color: 'var(--color-accent)' }}>Valentino</span>
+          <span style={{ color: scrolled ? '#000000' : '#FFFFFF' }}> Bongiorno</span>
         </a>
 
         <button
