@@ -16,7 +16,11 @@ const ProjectsSection = () => {
     <section
       id="projects"
       className="section-padding"
-      style={{ backgroundColor: '#ffffff' }}
+      style={{
+        backgroundColor: '#ffffff',
+        backgroundImage: 'radial-gradient(rgba(0,0,0,0.045) 1px, transparent 1px)',
+        backgroundSize: '22px 22px',
+      }}
     >
       <div className="container">
 

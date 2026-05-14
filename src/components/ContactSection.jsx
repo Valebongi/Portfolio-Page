@@ -32,7 +32,11 @@ const ContactSection = () => {
     <section
       id="contact"
       className="section-padding"
-      style={{ backgroundColor: 'var(--color-bg)' }}
+      style={{
+        backgroundColor: '#ffffff',
+        backgroundImage: 'radial-gradient(rgba(0,0,0,0.045) 1px, transparent 1px)',
+        backgroundSize: '22px 22px',
+      }}
     >
       <div className="container">
         <div className="max-width-content mx-auto text-center fade-in-up">

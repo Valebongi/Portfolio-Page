@@ -1,100 +1,107 @@
-const row1 = [
-  { name: 'React' }, { name: 'TypeScript' }, { name: 'Node.js' },
-  { name: 'Next.js' }, { name: 'JavaScript' }, { name: 'Python' },
-  { name: 'C#' }, { name: 'HTML / CSS' }, { name: 'Vite' }, { name: 'Git' },
+import {
+  SiReact, SiTypescript, SiNodedotjs, SiNextdotjs, SiJavascript,
+  SiPython, SiGit, SiUnity, SiFigma, SiDocker, SiVercel, SiVite, SiDotnet
+} from 'react-icons/si';
+import { FaRobot } from 'react-icons/fa';
+
+const techItems = [
+  { name: 'React',           Icon: SiReact,      color: '#61DAFB' },
+  { name: 'TypeScript',      Icon: SiTypescript,  color: '#3178C6' },
+  { name: 'Node.js',         Icon: SiNodedotjs,   color: '#6cc24a' },
+  { name: 'Next.js',         Icon: SiNextdotjs,   color: '#e0e0e0' },
+  { name: 'JavaScript',      Icon: SiJavascript,  color: '#F7DF1E' },
+  { name: 'Python',          Icon: SiPython,      color: '#4B9CD3' },
+  { name: 'C# / .NET',       Icon: SiDotnet,      color: '#512BD4' },
+  { name: 'Claude API',      Icon: FaRobot,       color: '#E10600', ai: true },
+  { name: 'OpenAI API',      Icon: FaRobot,       color: '#10a37f', ai: true },
+  { name: 'GitHub Copilot',  Icon: FaRobot,       color: '#8957e5', ai: true },
+  { name: 'Unity',           Icon: SiUnity,       color: '#cccccc' },
+  { name: 'Figma',           Icon: SiFigma,       color: '#F24E1E' },
+  { name: 'Docker',          Icon: SiDocker,      color: '#2496ED' },
+  { name: 'Vercel',          Icon: SiVercel,      color: '#cccccc' },
+  { name: 'Vite',            Icon: SiVite,        color: '#646CFF' },
+  { name: 'Git',             Icon: SiGit,         color: '#F05032' },
 ];
-
-const row2 = [
-  { name: 'Claude API', ai: true }, { name: 'OpenAI API', ai: true },
-  { name: 'Cursor', ai: true }, { name: 'GitHub Copilot', ai: true },
-  { name: 'Vercel AI SDK', ai: true }, { name: 'Unity' },
-  { name: 'Figma' }, { name: 'Docker' }, { name: 'Vercel' },
-];
-
-const MarqueeTrack = ({ items, direction = 'left', speed = 35 }) => {
-  const doubled = [...items, ...items];
-  const duration = `${items.length * speed}s`;
-  const animation = direction === 'left'
-    ? `marquee-left ${duration} linear infinite`
-    : `marquee-right ${duration} linear infinite`;
-
-  return (
-    <div style={{ overflow: 'hidden', width: '100%' }}>
-      <div style={{ display: 'flex', animation, willChange: 'transform' }}>
-        {doubled.map((item, i) => (
-          <span
-            key={i}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '0 28px',
-              whiteSpace: 'nowrap',
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.82rem',
-              color: item.ai ? '#ffffff' : '#444444',
-              fontWeight: item.ai ? 700 : 400,
-            }}
-          >
-            {item.ai && (
-              <span style={{
-                fontSize: '0.58rem',
-                color: '#E10600',
-                border: '1px solid #E10600',
-                padding: '1px 5px',
-                borderRadius: '3px',
-                letterSpacing: '0.08em',
-                fontWeight: 700,
-                lineHeight: 1.6
-              }}>AI</span>
-            )}
-            {item.name}
-            <span style={{ color: '#E10600', opacity: 0.35, marginLeft: '4px' }}>·</span>
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-};
 
 const TechMarquee = () => {
+  const doubled = [...techItems, ...techItems];
+
   return (
     <section id="stack" style={{
-      backgroundColor: '#0f0f0f',
-      borderTop: '1px solid rgba(255,255,255,0.08)',
-      borderBottom: '1px solid rgba(255,255,255,0.08)',
-      padding: '0',
-      overflow: 'hidden'
+      backgroundColor: '#0a0a0a',
+      borderTop: '1px solid rgba(255,255,255,0.07)',
+      borderBottom: '1px solid rgba(255,255,255,0.07)',
+      padding: '18px 0',
+      overflow: 'hidden',
     }}>
-      {/* Section label */}
-      <div className="container" style={{ paddingTop: '4rem', paddingBottom: '2rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '4px' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#555', letterSpacing: '0.12em' }}>02</span>
-          <div style={{ height: '1px', width: '32px', backgroundColor: '#E10600' }} />
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#555', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Stack & Tools</span>
-        </div>
-        <h2 style={{ color: '#ffffff', fontSize: '2rem', fontWeight: 700, marginBottom: '0.5rem' }}>
-          Lo que uso para construir.
-        </h2>
-        <p style={{ color: '#888', fontSize: '0.95rem', marginBottom: '0', maxWidth: '520px' }}>
-          Trabajo con IA diariamente — no como buzzword, sino como herramienta real integrada en el desarrollo de productos.
-        </p>
-      </div>
+      {/* Label */}
+      <p style={{
+        textAlign: 'center',
+        fontFamily: 'var(--font-mono)',
+        fontSize: '0.6rem',
+        color: '#3a3a3a',
+        letterSpacing: '0.2em',
+        textTransform: 'uppercase',
+        marginBottom: '14px',
+      }}>
+        Stack Tecnológico
+      </p>
 
-      {/* Marquee rows */}
-      <div style={{ paddingBottom: '4rem', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-        <MarqueeTrack items={row1} direction="left" speed={4} />
-        <MarqueeTrack items={row2} direction="right" speed={4} />
+      {/* Scrolling row with edge fade */}
+      <div style={{
+        position: 'relative',
+        WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+        maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+      }}>
+        <div style={{
+          display: 'flex',
+          animation: 'marquee-left 40s linear infinite',
+          willChange: 'transform',
+        }}>
+          {doubled.map((item, i) => (
+            <span
+              key={i}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '7px',
+                padding: '0 26px',
+                whiteSpace: 'nowrap',
+                flexShrink: 0,
+              }}
+            >
+              <item.Icon size={14} color={item.color} style={{ flexShrink: 0 }} />
+              <span style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.73rem',
+                color: item.ai ? '#cccccc' : '#666',
+                fontWeight: item.ai ? 700 : 400,
+              }}>
+                {item.name}
+              </span>
+              {item.ai && (
+                <span style={{
+                  fontSize: '0.5rem',
+                  color: '#E10600',
+                  border: '1px solid rgba(225,6,0,0.55)',
+                  padding: '0px 4px',
+                  borderRadius: '2px',
+                  lineHeight: '1.7',
+                  fontWeight: 700,
+                  fontFamily: 'var(--font-mono)',
+                  letterSpacing: '0.06em',
+                }}>AI</span>
+              )}
+              <span style={{ color: '#2a2a2a', marginLeft: '4px', fontSize: '0.8rem' }}>·</span>
+            </span>
+          ))}
+        </div>
       </div>
 
       <style>{`
         @keyframes marquee-left {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
-        }
-        @keyframes marquee-right {
-          0%   { transform: translateX(-50%); }
-          100% { transform: translateX(0); }
         }
       `}</style>
     </section>
