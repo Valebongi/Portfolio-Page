@@ -71,6 +71,15 @@ const Navbar = () => {
             <li className="nav-item">
               <a
                 className="nav-link"
+                onClick={() => scrollToSection('stack')}
+                style={{ cursor: 'pointer', fontWeight: 500 }}
+              >
+                Stack
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className="nav-link"
                 onClick={() => scrollToSection('about')}
                 style={{ cursor: 'pointer', fontWeight: 500 }}
               >
