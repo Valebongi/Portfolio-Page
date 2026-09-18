@@ -1,21 +1,26 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 
-const techStack = ['React', 'Node.js', 'TypeScript', 'Next.js', 'JavaScript', 'Git'];
+const HERO_PHOTO = 'https://raw.githubusercontent.com/Valebongi/page-images/088aa92f836046c65ce61e3e78acdb5442755770/ChatGPT%20Image%2014%20may%202026%2C%2009_59_41.png';
 
 const particles = [
-  { left: '7%',  top: '22%', delay: '0s',    dur: '8s',  size: 2.5 },
-  { left: '18%', top: '68%', delay: '1.8s',  dur: '10s', size: 1.8 },
-  { left: '80%', top: '28%', delay: '0.6s',  dur: '11s', size: 3 },
-  { left: '64%', top: '72%', delay: '2.4s',  dur: '9s',  size: 2 },
-  { left: '91%', top: '48%', delay: '1.1s',  dur: '12s', size: 1.8 },
-  { left: '52%', top: '12%', delay: '3.2s',  dur: '9.5s',size: 2.5 },
-  { left: '38%', top: '83%', delay: '0.4s',  dur: '8.5s',size: 2 },
-  { left: '73%', top: '55%', delay: '2s',    dur: '13s', size: 1.5 },
+  { left: '5%',  top: '20%', delay: '0s',    dur: '8s',   size: 2.5 },
+  { left: '12%', top: '68%', delay: '1.8s',  dur: '10s',  size: 1.8 },
+  { left: '30%', top: '85%', delay: '0.4s',  dur: '8.5s', size: 2 },
+  { left: '42%', top: '12%', delay: '3.2s',  dur: '9.5s', size: 2.5 },
+  { left: '8%',  top: '48%', delay: '2.1s',  dur: '11s',  size: 1.5 },
 ];
 
 const Hero = () => {
   const heroRef = useRef(null);
-  const [glow, setGlow] = useState({ x: 72, y: 28 });
+  const [glow, setGlow] = useState({ x: 65, y: 40 });
+
+  const [photoReady, setPhotoReady] = useState(false);
+
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => setPhotoReady(true);
+    img.src = HERO_PHOTO;
+  }, []);
 
   const handleMouseMove = useCallback((e) => {
     if (!heroRef.current) return;
@@ -36,67 +41,90 @@ const Hero = () => {
         minHeight: '100vh',
         paddingTop: '80px',
         paddingBottom: '60px',
-        background: '#0f0f0f',
-        backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px)',
-        backgroundSize: '28px 28px',
+        backgroundColor: '#0D0D14',
         position: 'relative',
         overflow: 'hidden',
       }}
     >
-      {/* Mouse-following glow */}
+      {/* ── Photo anchored to the RIGHT — fades in once loaded ── */}
+      <div className="hero-photo-right" style={{ opacity: photoReady ? 1 : 0, transition: 'opacity 0.9s ease' }}>
+        <div style={{
+          position: 'absolute', inset: 0,
+          backgroundImage: `url(${HERO_PHOTO})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'left top',
+        }} />
+        {/* Blend left edge into dark background */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(to right, #0D0D14 0%, rgba(13,13,20,0.6) 25%, rgba(13,13,20,0.1) 55%, transparent 80%)',
+          pointerEvents: 'none',
+        }} />
+      </div>
+
+      {/* ── Dot pattern over full section ── */}
       <div style={{
-        position: 'absolute',
-        inset: 0,
-        background: `radial-gradient(700px circle at ${glow.x}% ${glow.y}%, rgba(225,6,0,0.07) 0%, transparent 65%)`,
-        zIndex: 0,
-        pointerEvents: 'none',
-        transition: 'background 0.15s ease',
+        position: 'absolute', inset: 0,
+        backgroundImage: 'radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)',
+        backgroundSize: '26px 26px',
+        zIndex: 1, pointerEvents: 'none',
       }} />
 
-      {/* Static corner glow */}
+      {/* ── Top + bottom edge fades ── */}
       <div style={{
-        position: 'absolute', top: '-15%', right: '-10%',
-        width: '600px', height: '600px',
-        background: 'radial-gradient(circle, rgba(225,6,0,0.08) 0%, transparent 65%)',
-        borderRadius: '50%', zIndex: 0, pointerEvents: 'none',
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(to bottom, #0D0D14 0%, transparent 14%)',
+        zIndex: 2, pointerEvents: 'none',
+      }} />
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'linear-gradient(to top, #0D0D14 0%, transparent 18%)',
+        zIndex: 2, pointerEvents: 'none',
       }} />
 
-      {/* Floating particles */}
+      {/* ── Mouse-following glow ── */}
+      <div
+        className="hero-mouse-glow"
+        style={{ '--gx': `${glow.x}%`, '--gy': `${glow.y}%`, zIndex: 3 }}
+      />
+
+      {/* ── Floating particles ── */}
       {particles.map((p, i) => (
         <div key={i} style={{
           position: 'absolute',
           left: p.left, top: p.top,
           width: p.size, height: p.size,
           borderRadius: '50%',
-          backgroundColor: '#E10600',
+          backgroundColor: '#8B5CF6',
+          opacity: 0.5,
           animation: `float-particle ${p.dur} ease-in-out ${p.delay} infinite`,
-          zIndex: 0, pointerEvents: 'none',
+          zIndex: 3, pointerEvents: 'none',
         }} />
       ))}
 
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div className="row align-items-center g-5">
+      {/* ── Content ── */}
+      <div className="container" style={{ position: 'relative', zIndex: 4 }}>
+        <div className="row">
+          <div className="col-lg-7 fade-in-up">
 
-          {/* Left */}
-          <div className="col-lg-6 fade-in-up">
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1.5rem' }}>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: '#555', letterSpacing: '0.12em' }}>00</span>
-              <div style={{ height: '1px', width: '28px', backgroundColor: '#E10600' }} />
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: '#555', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Software Engineer</span>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'rgba(255,255,255,0.28)', letterSpacing: '0.12em' }}>00</span>
+              <div style={{ height: '1px', width: '28px', backgroundColor: '#8B5CF6' }} />
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'rgba(255,255,255,0.28)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Software Engineer</span>
             </div>
 
-            <h1 className="display-3 fw-bold mb-4" style={{ color: '#FFFFFF', lineHeight: 1.05 }}>
+            <h1 style={{ color: '#F1F5F9', lineHeight: 1.12, fontWeight: 700, fontSize: 'clamp(2.4rem, 6vw, 4rem)', marginBottom: '1.5rem' }}>
               Valentino<br />
               <span className="hero-name-shimmer">Bongiorno.</span>
               <span className="hero-cursor" />
             </h1>
 
-            <p className="lead mb-4" style={{ fontSize: '1.1rem', lineHeight: 1.8, maxWidth: '460px', color: '#BBBBBB' }}>
+            <p style={{ fontSize: '1.05rem', lineHeight: 1.8, maxWidth: '460px', color: '#94A3B8', marginBottom: '2rem' }}>
               Construyo software para web, mobile y videojuegos.
               Integro IA donde realmente suma — no como buzzword, sino como herramienta concreta dentro del producto.
             </p>
 
-            <div className="d-flex gap-3 flex-wrap mb-5">
+            <div className="d-flex gap-3 flex-wrap">
               <button
                 className="btn-primary-custom"
                 onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
@@ -106,78 +134,9 @@ const Hero = () => {
               <button
                 className="btn-secondary-custom"
                 onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}
-                style={{ borderColor: '#FFFFFF', color: '#FFFFFF' }}
-                onMouseEnter={(e) => { e.target.style.backgroundColor = '#FFFFFF'; e.target.style.color = '#000000'; }}
-                onMouseLeave={(e) => { e.target.style.backgroundColor = 'transparent'; e.target.style.color = '#FFFFFF'; }}
               >
                 Sobre mí
               </button>
-            </div>
-          </div>
-
-          {/* Right: Info Cards */}
-          <div className="col-lg-6 d-none d-lg-flex flex-column gap-3 fade-in-up fade-in-delay-2">
-
-            {/* Tech Stack Card */}
-            <div style={{
-              backgroundColor: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.07)',
-              borderRadius: '14px',
-              padding: '22px',
-              backdropFilter: 'blur(4px)',
-            }}>
-              <p style={{ fontFamily: 'var(--font-mono)', color: '#444', fontSize: '0.68rem', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '12px', fontWeight: 600 }}>
-                Tech Stack
-              </p>
-              <div className="d-flex flex-wrap gap-2">
-                {techStack.map((tech, i) => (
-                  <span key={tech} style={{
-                    backgroundColor: 'rgba(225,6,0,0.08)',
-                    border: '1px solid rgba(225,6,0,0.2)',
-                    color: '#DDDDDD',
-                    padding: '5px 13px',
-                    borderRadius: '5px',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.78rem',
-                    fontWeight: 500,
-                    animation: `fade-in-badge 0.4s ease ${i * 0.07 + 0.6}s both`,
-                  }}>{tech}</span>
-                ))}
-              </div>
-            </div>
-
-            {/* Stats row */}
-            <div className="d-flex gap-3">
-              <div style={{
-                flex: 1,
-                backgroundColor: 'rgba(225,6,0,0.06)',
-                border: '1px solid rgba(225,6,0,0.18)',
-                borderRadius: '14px',
-                padding: '22px',
-              }}>
-                <p style={{ fontFamily: 'var(--font-mono)', color: '#444', fontSize: '0.68rem', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '10px', fontWeight: 600 }}>Proyectos</p>
-                <p style={{ color: '#FFFFFF', fontSize: '2.6rem', fontWeight: 700, margin: 0, lineHeight: 1 }}>2+</p>
-                <p style={{ color: '#666', fontSize: '0.78rem', margin: '6px 0 0', fontFamily: 'var(--font-mono)' }}>en producción</p>
-              </div>
-
-              <div style={{
-                flex: 1,
-                backgroundColor: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.07)',
-                borderRadius: '14px',
-                padding: '22px',
-              }}>
-                <p style={{ fontFamily: 'var(--font-mono)', color: '#444', fontSize: '0.68rem', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '10px', fontWeight: 600 }}>Estado</p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <div style={{
-                    width: 9, height: 9, borderRadius: '50%',
-                    backgroundColor: '#22c55e', flexShrink: 0,
-                    animation: 'pulse-green 2s ease-in-out infinite',
-                  }} />
-                  <span style={{ color: '#FFFFFF', fontWeight: 600, fontSize: '0.9rem' }}>Disponible</span>
-                </div>
-                <p style={{ color: '#666', fontSize: '0.78rem', margin: '6px 0 0', fontFamily: 'var(--font-mono)' }}>nuevos proyectos</p>
-              </div>
             </div>
 
           </div>
@@ -185,21 +144,52 @@ const Hero = () => {
       </div>
 
       <style>{`
+        /* Hero always dark regardless of theme toggle */
+        #home {
+          --bg-primary:   #0D0D14;
+          --text-primary: #F1F5F9;
+          --accent:       #8B5CF6;
+        }
+        [data-theme="light"] #home {
+          background-color: #0D0D14 !important;
+        }
+
+        /* Photo container — right 70% of hero, person visible center-right */
+        .hero-photo-right {
+          position: absolute;
+          top: 0; right: 0;
+          width: 95%;
+          height: 100%;
+          overflow: hidden;
+          z-index: 0;
+          pointer-events: none;
+        }
+        @media (max-width: 991px) {
+          .hero-photo-right { width: 100%; opacity: 0.35; }
+        }
+
+        .hero-mouse-glow {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(650px circle at var(--gx) var(--gy), rgba(139,92,246,0.1) 0%, transparent 65%);
+          pointer-events: none;
+        }
         .hero-name-shimmer {
-          background: linear-gradient(90deg, #E10600 0%, #FF5555 35%, #FFaaaa 50%, #FF5555 65%, #E10600 100%);
+          background: linear-gradient(90deg, #8B5CF6 0%, #A78BFA 35%, #DDD6FE 50%, #A78BFA 65%, #8B5CF6 100%);
           background-size: 300% auto;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
           animation: text-shimmer 5s linear infinite;
           display: inline-block;
+          padding-bottom: 0.15em;
         }
         .hero-cursor {
           display: inline-block;
           width: 3px;
-          height: 0.75em;
-          background-color: #E10600;
-          margin-left: 5px;
+          height: 0.72em;
+          background-color: #8B5CF6;
+          margin-left: 6px;
           vertical-align: middle;
           border-radius: 1px;
           animation: blink-cursor 1.1s step-end infinite;
@@ -213,24 +203,23 @@ const Hero = () => {
           50%       { opacity: 0; }
         }
         @keyframes float-particle {
-          0%   { opacity: 0;   transform: translateY(0)    scale(0.8); }
+          0%   { opacity: 0;   transform: translateY(0) scale(0.8); }
           20%  { opacity: 0.5; }
           80%  { opacity: 0.2; }
           100% { opacity: 0;   transform: translateY(-55px) scale(1.4); }
         }
-        @keyframes pulse-green {
-          0%, 100% { box-shadow: 0 0 5px rgba(34,197,94,0.4); }
-          50%       { box-shadow: 0 0 14px rgba(34,197,94,0.85); }
-        }
-        @keyframes fade-in-badge {
-          from { opacity: 0; transform: translateY(6px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
         @media (max-width: 768px) {
-          .hero-section { padding-top:100px !important; padding-bottom:80px !important; padding-left:20px !important; padding-right:20px !important; }
-          .hero-section h1 { font-size:2rem !important; }
-          .hero-section .lead { font-size:1rem !important; }
-          .btn-primary-custom, .btn-secondary-custom { width:100%; padding:0.75rem 1.5rem !important; }
+          .hero-section { padding-top: 100px !important; padding-bottom: 80px !important; }
+          .btn-primary-custom, .btn-secondary-custom { width: 100%; }
+          /* Stronger dark overlay on mobile so text stays readable */
+          #home::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(13,13,20,0.55);
+            z-index: 1;
+            pointer-events: none;
+          }
         }
       `}</style>
     </section>

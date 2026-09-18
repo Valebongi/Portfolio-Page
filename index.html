@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/png" href="/assets/icons/favicon.png" />
@@ -13,21 +13,19 @@
   <meta name="keywords" content="software engineer, web development, React, Next.js, AI integration, Claude API, OpenAI, mobile, Unity, Valentino Bongiorno" />
   <meta name="author" content="Valentino Bongiorno" />
 
-  <!-- Open Graph / Facebook -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://ValentinoBongiorno.github.io/Portfolio-Page/" />
-  <meta property="og:title" content="Valentino Bongiorno | Game Developer" />
-  <meta property="og:description" content="Explore indie games built with passion and precision by Valentino Bongiorno." />
-  <meta property="og:image" content="https://ValentinoBongiorno.github.io/Portfolio-Page/assets/og-image.jpg" />
+  <meta property="og:url" content="https://Valebongi.github.io/Portfolio-Page/" />
+  <meta property="og:title" content="Valentino Bongiorno | Software Engineer" />
+  <meta property="og:description" content="Software engineer building web, mobile and game products. AI integration specialist." />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://ValentinoBongiorno.github.io/Portfolio-Page/" />
-  <meta property="twitter:title" content="Valentino Bongiorno | Game Developer" />
-  <meta property="twitter:description" content="Explore indie games built with passion and precision by Valentino Bongiorno." />
-  <meta property="twitter:image" content="https://ValentinoBongiorno.github.io/Portfolio-Page/assets/og-image.jpg" />
+  <meta property="twitter:url" content="https://Valebongi.github.io/Portfolio-Page/" />
+  <meta property="twitter:title" content="Valentino Bongiorno | Software Engineer" />
+  <meta property="twitter:description" content="Software engineer building web, mobile and game products." />
 
-  <!-- Preconnect for Performance -->
+  <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
@@ -35,7 +33,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
   <!-- Theme Color -->
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#0D0D14" />
+
+  <!-- Anti-flash theme script — runs before first paint -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <div id="root"></div>

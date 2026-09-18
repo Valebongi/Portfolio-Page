@@ -31,70 +31,60 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="section-padding"
-      style={{
-        backgroundColor: '#ffffff',
-        backgroundImage: 'radial-gradient(rgba(0,0,0,0.045) 1px, transparent 1px)',
-        backgroundSize: '22px 22px',
-      }}
+      className="section-padding dot-pattern"
+      style={{ backgroundColor: 'var(--bg-primary)' }}
     >
       <div className="container">
         <div className="max-width-content mx-auto text-center fade-in-up">
-          <h2 className="display-5 fw-bold mb-3">Get In Touch</h2>
-          <p className="lead text-muted mb-4">
-            Have a question, feedback, or just want to say hi? I'd love to hear from you.
+
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '8px' }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--text-muted)', letterSpacing: '0.12em' }}>03</span>
+            <div style={{ height: '1px', width: '32px', backgroundColor: 'var(--accent)' }} />
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--text-muted)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Contacto</span>
+          </div>
+
+          <h2 className="display-5 fw-bold mb-3" style={{ color: 'var(--text-primary)' }}>Get In Touch</h2>
+          <p className="lead mb-4" style={{ color: 'var(--text-secondary)' }}>
+            ¿Tenés un proyecto en mente o querés charlar? Escribime.
           </p>
-          <div
-            style={{
-              width: '60px',
-              height: '4px',
-              backgroundColor: 'var(--color-accent)',
-              margin: '2rem auto 3rem auto'
-            }}
-          />
+          <div style={{ width: '60px', height: '4px', backgroundColor: 'var(--accent)', margin: '2rem auto 3rem auto' }} />
 
           <div className="row g-4">
             {contactLinks.map((link, index) => (
-              <div
-                key={link.name}
-                className={`col-md-6 fade-in-up fade-in-delay-${index + 1}`}
-              >
-                <a
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-decoration-none"
-                >
+              <div key={link.name} className={`col-md-6 fade-in-up fade-in-delay-${index + 1}`}>
+                <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
                   <div
-                    className="p-4 hover-lift"
+                    className="p-4"
                     style={{
-                      backgroundColor: 'var(--color-soft-gray)',
+                      backgroundColor: 'var(--bg-surface)',
                       borderRadius: 'var(--radius-lg)',
-                      transition: 'all var(--transition-fast)',
-                      border: '2px solid transparent'
+                      transition: 'border-color 200ms ease, background-color 200ms ease, transform 200ms ease',
+                      border: '2px solid transparent',
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = 'var(--color-accent)';
-                      e.currentTarget.style.backgroundColor = 'white';
+                      e.currentTarget.style.borderColor = 'var(--accent)';
+                      e.currentTarget.style.backgroundColor = 'var(--accent-glow)';
+                      e.currentTarget.style.transform = 'translateY(-4px)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.borderColor = 'transparent';
-                      e.currentTarget.style.backgroundColor = 'var(--color-soft-gray)';
+                      e.currentTarget.style.backgroundColor = 'var(--bg-surface)';
+                      e.currentTarget.style.transform = 'translateY(0)';
                     }}
                   >
-                    <div style={{ marginBottom: '0.75rem', color: 'var(--color-accent)' }}>
+                    <div style={{ marginBottom: '0.75rem', color: 'var(--accent)' }}>
                       <link.Icon size={32} />
                     </div>
-                    <h3 className="h6 fw-bold mb-2">{link.name}</h3>
-                    <p className="text-muted small mb-0">{link.display}</p>
+                    <h3 className="h6 fw-bold mb-2" style={{ color: 'var(--text-primary)' }}>{link.name}</h3>
+                    <p className="small mb-0" style={{ color: 'var(--text-muted)' }}>{link.display}</p>
                   </div>
                 </a>
               </div>
             ))}
           </div>
 
-          <div className="mt-5 pt-4" style={{ borderTop: '1px solid var(--color-medium-gray)' }}>
-            <p className="text-muted mb-3">Or connect directly:</p>
+          <div className="mt-5 pt-4" style={{ borderTop: '1px solid var(--border-color)' }}>
+            <p className="mb-3" style={{ color: 'var(--text-muted)' }}>O conectá directo:</p>
             <div className="d-flex justify-content-center gap-4 flex-wrap">
               {contactLinks.map((link) => (
                 <a
@@ -103,13 +93,14 @@ const ContactSection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="accent-underline fw-medium"
-                  style={{ fontSize: '1.1rem' }}
+                  style={{ fontSize: '1rem', color: 'var(--text-secondary)' }}
                 >
                   {link.name}
                 </a>
               ))}
             </div>
           </div>
+
         </div>
       </div>
     </section>

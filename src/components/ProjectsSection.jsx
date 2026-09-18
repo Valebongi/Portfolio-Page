@@ -4,7 +4,7 @@ import projectsData from '../data/projects';
 
 const tabs = [
   { key: 'web',    label: 'Web' },
-  { key: 'mobile', label: 'Mobile' },
+  { key: 'mobile', label: 'Apps' },
   { key: 'games',  label: 'Games' },
 ];
 
@@ -15,33 +15,27 @@ const ProjectsSection = () => {
   return (
     <section
       id="projects"
-      className="section-padding"
-      style={{
-        backgroundColor: '#ffffff',
-        backgroundImage: 'radial-gradient(rgba(0,0,0,0.045) 1px, transparent 1px)',
-        backgroundSize: '22px 22px',
-      }}
+      className="section-padding dot-pattern"
+      style={{ backgroundColor: 'var(--bg-primary)' }}
     >
       <div className="container">
 
-        {/* Section label */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '8px' }}>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#999', letterSpacing: '0.12em' }}>01</span>
-          <div style={{ height: '1px', width: '32px', backgroundColor: '#E10600' }} />
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#999', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Projects</span>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--text-muted)', letterSpacing: '0.12em' }}>01</span>
+          <div style={{ height: '1px', width: '32px', backgroundColor: 'var(--accent)' }} />
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--text-muted)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Projects</span>
         </div>
 
-        <h2 className="display-5 fw-bold mb-2">Lo que he construido.</h2>
-        <p className="text-muted mb-5" style={{ maxWidth: '520px', fontSize: '1rem' }}>
+        <h2 className="display-5 fw-bold mb-2" style={{ color: 'var(--text-primary)' }}>Lo que he construido.</h2>
+        <p className="mb-5" style={{ maxWidth: '520px', fontSize: '1rem', color: 'var(--text-secondary)' }}>
           Proyectos web, mobile y videojuegos — cada uno con sus tecnologías y decisiones propias.
         </p>
 
         {/* Tabs */}
         <div style={{
           display: 'flex',
-          borderBottom: '1px solid #E0E0E0',
+          borderBottom: '1px solid var(--border-color)',
           marginBottom: '2.5rem',
-          gap: '0'
         }}>
           {tabs.map(({ key, label }) => (
             <button
@@ -56,8 +50,8 @@ const ProjectsSection = () => {
                 fontWeight: 700,
                 letterSpacing: '0.06em',
                 textTransform: 'uppercase',
-                color: active === key ? '#000000' : '#aaa',
-                borderBottom: active === key ? '2px solid #E10600' : '2px solid transparent',
+                color: active === key ? 'var(--text-primary)' : 'var(--text-muted)',
+                borderBottom: active === key ? '2px solid var(--accent)' : '2px solid transparent',
                 cursor: 'pointer',
                 marginBottom: '-1px',
                 transition: 'color 150ms ease',
@@ -68,7 +62,6 @@ const ProjectsSection = () => {
           ))}
         </div>
 
-        {/* Cards */}
         <div className="row">
           {currentProjects.map((project) => (
             <ProjectCard key={project.id} project={project} />

@@ -1,39 +1,42 @@
 import { useState, useEffect } from 'react';
+import { FaSun, FaMoon } from 'react-icons/fa';
 
-const Navbar = () => {
+const Navbar = ({ theme, onToggleTheme }) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const navLinks = [
+    { label: 'Home',     id: 'home' },
+    { label: 'Projects', id: 'projects' },
+    { label: 'Stack',    id: 'stack' },
+    { label: 'About',    id: 'about' },
+    { label: 'Contact',  id: 'contact' },
+  ];
 
   return (
     <nav
-      className={`navbar navbar-expand-lg fixed-top ${scrolled ? 'navbar-scrolled' : 'navbar-transparent'}`}
+      className="navbar navbar-expand-lg fixed-top"
       style={{
-        transition: 'all 300ms ease-in-out',
-        backgroundColor: scrolled ? 'rgba(255, 255, 255, 0.98)' : 'rgba(0, 0, 0, 0.9)',
-        boxShadow: scrolled ? '0 2px 12px rgba(0, 0, 0, 0.08)' : 'none',
-        backdropFilter: scrolled ? 'blur(10px)' : 'blur(10px)',
-        zIndex: 1050
+        transition: 'background-color 300ms ease, box-shadow 300ms ease',
+        backgroundColor: scrolled ? 'var(--navbar-bg-scroll)' : 'var(--navbar-bg-top)',
+        boxShadow: scrolled ? '0 1px 0 var(--border-color)' : 'none',
+        backdropFilter: 'blur(12px)',
+        zIndex: 1050,
       }}
     >
       <div className="container">
-        <a className="navbar-brand fw-bold" href="#" style={{ fontSize: '1.5rem' }}>
-          <span style={{ color: 'var(--color-accent)' }}>Valentino</span>
-          <span style={{ color: scrolled ? '#000000' : '#FFFFFF' }}> Bongiorno</span>
+        <a className="navbar-brand fw-bold" href="#" style={{ fontSize: '1.4rem', color: 'var(--navbar-text)' }}>
+          Valentino <span style={{ color: 'var(--accent)' }}>Bongiorno</span>
         </a>
 
         <button
@@ -44,56 +47,56 @@ const Navbar = () => {
           aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          style={{ borderColor: 'var(--border-color)' }}
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon" />
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <a
-                className="nav-link"
-                onClick={() => scrollToSection('home')}
-                style={{ cursor: 'pointer', fontWeight: 500 }}
+          <ul className="navbar-nav ms-auto align-items-center gap-1">
+            {navLinks.map(({ label, id }) => (
+              <li key={id} className="nav-item">
+                <a
+                  className="nav-link"
+                  onClick={() => scrollToSection(id)}
+                  style={{
+                    cursor: 'pointer',
+                    fontWeight: 500,
+                    color: 'var(--navbar-text)',
+                    fontSize: '0.9rem',
+                    padding: '0.4rem 0.75rem',
+                    borderRadius: '6px',
+                    transition: 'background-color 150ms ease, color 150ms ease',
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--accent-glow)'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+
+            {/* Theme Toggle */}
+            <li className="nav-item ms-2">
+              <button
+                onClick={onToggleTheme}
+                aria-label="Toggle theme"
+                style={{
+                  background: 'none',
+                  border: '1px solid var(--border-color)',
+                  borderRadius: '8px',
+                  padding: '6px 10px',
+                  cursor: 'pointer',
+                  color: 'var(--text-secondary)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  transition: 'border-color 150ms ease, color 150ms ease',
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--accent)'; e.currentTarget.style.color = 'var(--accent)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'var(--border-color)'; e.currentTarget.style.color = 'var(--text-secondary)'; }}
               >
-                Home
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
-                className="nav-link"
-                onClick={() => scrollToSection('projects')}
-                style={{ cursor: 'pointer', fontWeight: 500 }}
-              >
-                Projects
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
-                className="nav-link"
-                onClick={() => scrollToSection('stack')}
-                style={{ cursor: 'pointer', fontWeight: 500 }}
-              >
-                Stack
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
-                className="nav-link"
-                onClick={() => scrollToSection('about')}
-                style={{ cursor: 'pointer', fontWeight: 500 }}
-              >
-                About
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
-                className="nav-link"
-                onClick={() => scrollToSection('contact')}
-                style={{ cursor: 'pointer', fontWeight: 500 }}
-              >
-                Contact
-              </a>
+                {theme === 'dark' ? <FaSun size={14} /> : <FaMoon size={14} />}
+              </button>
             </li>
           </ul>
         </div>

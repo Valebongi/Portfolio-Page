@@ -5,22 +5,22 @@ import {
 import { FaRobot } from 'react-icons/fa';
 
 const techItems = [
-  { name: 'React',           Icon: SiReact,      color: '#61DAFB' },
-  { name: 'TypeScript',      Icon: SiTypescript,  color: '#3178C6' },
-  { name: 'Node.js',         Icon: SiNodedotjs,   color: '#6cc24a' },
-  { name: 'Next.js',         Icon: SiNextdotjs,   color: '#e0e0e0' },
-  { name: 'JavaScript',      Icon: SiJavascript,  color: '#F7DF1E' },
-  { name: 'Python',          Icon: SiPython,      color: '#4B9CD3' },
-  { name: 'C# / .NET',       Icon: SiDotnet,      color: '#512BD4' },
-  { name: 'Claude API',      Icon: FaRobot,       color: '#E10600', ai: true },
-  { name: 'OpenAI API',      Icon: FaRobot,       color: '#10a37f', ai: true },
-  { name: 'GitHub Copilot',  Icon: FaRobot,       color: '#8957e5', ai: true },
-  { name: 'Unity',           Icon: SiUnity,       color: '#cccccc' },
-  { name: 'Figma',           Icon: SiFigma,       color: '#F24E1E' },
-  { name: 'Docker',          Icon: SiDocker,      color: '#2496ED' },
-  { name: 'Vercel',          Icon: SiVercel,      color: '#cccccc' },
-  { name: 'Vite',            Icon: SiVite,        color: '#646CFF' },
-  { name: 'Git',             Icon: SiGit,         color: '#F05032' },
+  { name: 'React',          Icon: SiReact,      color: '#61DAFB' },
+  { name: 'TypeScript',     Icon: SiTypescript,  color: '#3178C6' },
+  { name: 'Node.js',        Icon: SiNodedotjs,   color: '#6cc24a' },
+  { name: 'Next.js',        Icon: SiNextdotjs,   adaptive: true },
+  { name: 'JavaScript',     Icon: SiJavascript,  color: '#F7DF1E' },
+  { name: 'Python',         Icon: SiPython,      color: '#4B9CD3' },
+  { name: 'C# / .NET',      Icon: SiDotnet,      color: '#512BD4' },
+  { name: 'Claude API',     Icon: FaRobot,       color: '#E10600', ai: true },
+  { name: 'OpenAI API',     Icon: FaRobot,       color: '#10a37f', ai: true },
+  { name: 'GitHub Copilot', Icon: FaRobot,       color: '#8957e5', ai: true },
+  { name: 'Unity',          Icon: SiUnity,       adaptive: true },
+  { name: 'Figma',          Icon: SiFigma,       color: '#F24E1E' },
+  { name: 'Docker',         Icon: SiDocker,      color: '#2496ED' },
+  { name: 'Vercel',         Icon: SiVercel,      adaptive: true },
+  { name: 'Vite',           Icon: SiVite,        color: '#646CFF' },
+  { name: 'Git',            Icon: SiGit,         color: '#F05032' },
 ];
 
 const TechMarquee = () => {
@@ -28,18 +28,17 @@ const TechMarquee = () => {
 
   return (
     <section id="stack" style={{
-      backgroundColor: '#0a0a0a',
-      borderTop: '1px solid rgba(255,255,255,0.07)',
-      borderBottom: '1px solid rgba(255,255,255,0.07)',
+      backgroundColor: 'var(--bg-section-alt)',
+      borderTop: '1px solid var(--border-color)',
+      borderBottom: '1px solid var(--border-color)',
       padding: '18px 0',
       overflow: 'hidden',
     }}>
-      {/* Label */}
       <p style={{
         textAlign: 'center',
         fontFamily: 'var(--font-mono)',
         fontSize: '0.6rem',
-        color: '#3a3a3a',
+        color: 'var(--text-muted)',
         letterSpacing: '0.2em',
         textTransform: 'uppercase',
         marginBottom: '14px',
@@ -47,7 +46,6 @@ const TechMarquee = () => {
         Stack Tecnológico
       </p>
 
-      {/* Scrolling row with edge fade */}
       <div style={{
         position: 'relative',
         WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
@@ -59,22 +57,25 @@ const TechMarquee = () => {
           willChange: 'transform',
         }}>
           {doubled.map((item, i) => (
-            <span
-              key={i}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '7px',
-                padding: '0 26px',
-                whiteSpace: 'nowrap',
-                flexShrink: 0,
-              }}
-            >
-              <item.Icon size={14} color={item.color} style={{ flexShrink: 0 }} />
+            <span key={i} style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '7px',
+              padding: '0 26px',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+            }}>
+              <item.Icon
+                size={14}
+                style={{
+                  flexShrink: 0,
+                  color: item.adaptive ? 'var(--text-secondary)' : item.color,
+                }}
+              />
               <span style={{
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.73rem',
-                color: item.ai ? '#cccccc' : '#666',
+                color: item.ai ? 'var(--text-secondary)' : 'var(--text-muted)',
                 fontWeight: item.ai ? 700 : 400,
               }}>
                 {item.name}
@@ -92,7 +93,7 @@ const TechMarquee = () => {
                   letterSpacing: '0.06em',
                 }}>AI</span>
               )}
-              <span style={{ color: '#2a2a2a', marginLeft: '4px', fontSize: '0.8rem' }}>·</span>
+              <span style={{ color: 'var(--border-color)', marginLeft: '4px', fontSize: '0.8rem' }}>·</span>
             </span>
           ))}
         </div>
